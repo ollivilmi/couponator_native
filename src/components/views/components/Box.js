@@ -1,33 +1,26 @@
 import React, { Component } from 'react';
-import '../../styles/box.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openBox } from '../../../actions/boxActions';
 
-const ProgressBar = props => {
-    return (
-        <div className="progress">
-            <div className="progress-bar" role="progressbar" aria-valuenow={props.progress}
-                aria-valuemin="0" aria-valuemax="100" style={{width:props.progress + "%"}}>
-                    {props.progress}
-            </div>
-        </div>
-    )
-}
+import { View, Text, ProgressBarAndroid, TouchableOpacity, Image } from 'react-native';
 
 class Box extends Component {
     render() {
+        const amount = parseInt(this.props.progress);
+        const progress = this.props-progress - amount;
+
         return (
-            <div className="row">
-                <h4>{this.props.title}</h4>
-                <ProgressBar progress={this.props.progress}/>
-                <div className="boxWrapper">
-                    <a onClick={() => this.props.openBox(this.props)}> 
-                        <img className="align-self-center mr-3 boxImg" src="/images/gift.png" alt="Box"/>
-                        <p><kbd>{this.props.amount > 0 ? `[${this.props.amount}] available` : "None available"}</kbd></p>
-                    </a>
-                </div>
-            </div>
+            <View>
+                <Text>{this.props.store}</Text>
+                <ProgressBarAndroid styleAttr="Horizontal" progress={progress}/>
+                <View>
+                    <TouchableOpacity onPress={() => this.props.openBox(this.props)}> 
+                        <Image source={require('./assets/gift.png')} style={{width: 40, height: 40}}/>
+                    </TouchableOpacity>
+                    <Text>{amount > 0 ? `[${amount}] available` : "None available"}</Text>
+                </View>
+            </View>
         )
     }
 }

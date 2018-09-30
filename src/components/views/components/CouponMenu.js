@@ -1,18 +1,22 @@
 import React from 'react';
+import { Button } from 'react-native-elements'
+import { View, Text } from 'react-native';
+
+
 
 const Coupon = props => {
     return(
-        <div className="col">
-            <h4>{props.title}</h4>
-            <p>Valid until {props.date}</p>
-        </div>
+        <View>
+            <Text>{props.title}</Text>
+            <Text>Valid until {props.date}</Text>
+        </View>
     ) 
 }
 
 export const CouponMenu = props => {
     return (
-        <div className="couponGrid">
-            <button onClick={() => props.return()}>Return</button>
+        <View>
+            <Button onPress={() => props.return()}/>
             {
                 props.coupons.map((coupon, index) => {
                     return (
@@ -24,6 +28,6 @@ export const CouponMenu = props => {
                     )
                 })
             }
-        </div>
+        </View>
     )
 }

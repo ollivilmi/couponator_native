@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { closeBox } from '../../actions/boxActions';
+import { View, Text } from 'react-native';
+import { Button } from 'react-native-elements'
+
 
 class Coupon extends Component {
     constructor(props) {
@@ -17,13 +20,14 @@ class Coupon extends Component {
     }
 
     render() {
+        // ?
         return (
-            <button onClick={this.show} className="btn btn-secondary btn-lg btn-block coupon">
-                <div style={this.state.visibility}>
-                    <h4>{this.props.store}</h4>
-                    <p>{this.props.title}</p>
-                </div>
-            </button>
+            <Button onPress={this.show} title={this.props.store}>
+                <View style={this.state.visibility}>
+                    <Text>{this.props.store}</Text>
+                    <Text>{this.props.title}</Text>
+                </View>
+            </Button>
         )
     }
 }
@@ -31,14 +35,14 @@ class Coupon extends Component {
 class OpeningView extends Component {
     render() {
         return (
-            <div className="opening">
+            <View>
                 {
                 this.props.coupons.map((coupon, index) => {
                     return <Coupon key={coupon.id} store={coupon.store} title={coupon.title} />
                 })
                 }
-                <button className="btn btn-primary btn-lg centered" onClick={() => this.props.closeBox()}>Close</button>
-            </div>
+                <Button onPress={() => this.props.closeBox()} title="Close"></Button>
+            </View>
         )
     }
 }

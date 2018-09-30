@@ -6,20 +6,18 @@ import { BOX_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW } from '../actions/types';
 import { List, ListItem, Button } from 'react-native-elements'
 
 class Nav extends Component {
-  mapViews = () => {
-    return this.props.views.map((view, index) => {
-      return (
-        <ListItem key={index}>
-          <Button title={view} onPress={() => this.props.toggleView(view)}></Button>
-        </ListItem>
-        );
-      });
-  }
-
   render() {
     return (
-      <List className="nav nav-pills nav-fill">
-        { this.mapViews() }
+      <List>
+        { 
+          this.props.views.map((view, index) => {
+            return (
+            <ListItem key={index}>
+              <Button title={view} onPress={() => this.props.toggleView(view)}></Button>
+            </ListItem>
+            );
+          }) 
+        }
       </List>
     )
   }

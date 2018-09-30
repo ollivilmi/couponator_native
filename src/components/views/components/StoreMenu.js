@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchStores } from '../../../actions/storeActions';
+import { Button } from 'react-native-elements'
+import { View, Text } from 'react-native';
 
 export const Store = props => {
     return (
-        <button onClick={props.toggleView} className="btn btn-secondary btn-lg btn-block">
-            <h4>{props.name}</h4>
-            <p>{props.description}</p>
-        </button>
+        <View>
+            <Button onPress={props.toggleView} title={props.name}/>
+            <Text>{props.description}</Text>
+        </View>
     )
 }
 

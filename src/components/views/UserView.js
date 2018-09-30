@@ -1,9 +1,11 @@
 import React from 'react';
+import { Text } from 'react-native';
+
 
 export const UserView = props => {
     return (
-        <div className="container">
+        <Text>
             User View
-        </div>
+        </Text>
     )
 }

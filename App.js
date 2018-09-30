@@ -2,19 +2,30 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Nav from "./src/components/Nav";
 import Container from "./src/components/Container";
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from "redux-thunk";
+import rootReducer from './src/reducers';
 
 
-import store from './store.js';
+const initialState = {};
+const middleware = [thunk];
+
+const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+        applyMiddleware(...middleware)
+    )
+);
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View>
-        { <View>{this.props.navActive ? <Nav/> : null}<Container/></View> }
-        </View>
+        <Container/>
       </Provider>
     );
   }
 }
+

@@ -4,7 +4,6 @@ export const fetchBoxes = () => dispatch => {
   fetch('https://couponator-api.herokuapp.com/users/5bad33c2ee11ed0004f21472/lootboxes')
     .then(res => res.json())
     .then(boxes => {
-      console.log(boxes);
       dispatch({
       type: FETCH_BOXES,
       payload: boxes
@@ -14,7 +13,6 @@ export const fetchBoxes = () => dispatch => {
 };
 
 export const openBox = box => dispatch => {
-    console.log(`Trying to open box: ${box}`);
     fetch('https://couponator-api.herokuapp.com/users/5bad33c2ee11ed0004f21472/lootboxes')
     .then(res => res.json())
     .then(coupons => {

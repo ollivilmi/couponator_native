@@ -9,10 +9,9 @@ class Box extends Component {
     render() {
         const amount = parseInt(this.props.progress);
         const progress = this.props-progress - amount;
-
         return (
-            <View>
-                <Text>{this.props.store}</Text>
+            <View style={{marginTop: 22}}>
+                <Text>{this.props.title}</Text>
                 <ProgressBarAndroid styleAttr="Horizontal" progress={progress}/>
                 <View>
                     <TouchableOpacity onPress={() => this.props.openBox(this.props)}> 

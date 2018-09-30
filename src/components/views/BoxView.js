@@ -13,10 +13,10 @@ class BoxView extends Component {
 
     render() {
         return  (
-            <View>
+            <View style={{marginTop: 22}}>
                 {
                     this.props.boxes.map((box, index) => (
-                        <Box key={index} title={box.title} amount={box.amount} progress={box.progress}/>
+                        <Box key={index} title={box.store} progress={box.progress}/>
                     ))
                 }
             </View>

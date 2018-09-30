@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openBox } from '../../../actions/boxActions';
 
-import { View, Text, ProgressBarAndroid, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import * as Progress from 'react-native-progress';
 
 class Box extends Component {
     render() {
-        const amount = parseInt(this.props.progress);
-        const progress = this.props-progress - amount;
+        const amount = Math.floor(this.props.progress);
+        const progress = this.props.progress - amount;
+        console.log(progress);
+        console.log(amount);
         return (
             <View style={{marginTop: 22}}>
+                <Progress.Bar progress={progress}/>
                 <Text>{this.props.title}</Text>
-                <ProgressBarAndroid styleAttr="Horizontal" progress={progress}/>
                 <View>
                     <TouchableOpacity onPress={() => this.props.openBox(this.props)}> 
                         <Image source={require('./assets/gift.png')} style={{width: 40, height: 40}}/>

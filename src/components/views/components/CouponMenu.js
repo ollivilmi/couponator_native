@@ -16,7 +16,7 @@ const Coupon = props => {
 export const CouponMenu = props => {
     return (
         <View>
-            <Button onPress={() => props.return()}/>
+            <Button title="Return" onPress={() => props.return()}/>
             {
                 props.coupons.map((coupon, index) => {
                     return (

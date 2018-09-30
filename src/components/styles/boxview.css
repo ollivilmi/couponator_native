@@ -1,0 +1,24 @@
+.row {
+    height: 100%;
+    padding-top: 2em;
+}
+
+.row > h4 {
+    border-top: 3px solid black;
+    padding-top: 1em;
+}
+
+.boxImg {
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+}
+
+.progress {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.bgWhite {
+    background-image: url("/images/bgWhite.jpg");
+}

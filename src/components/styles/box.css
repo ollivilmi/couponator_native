@@ -1,0 +1,30 @@
+.boxText {
+    width: 20%;
+    margin: 0 auto;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.boxWrapper {
+    margin-top: 1em;
+    width: auto;
+    height: 100%;
+    text-align: center;
+    margin-right: 0!important;
+}
+
+h4 {
+    width: 100%;
+    text-align: center;
+}
+
+.progress {
+    border: 1px solid black;
+}
+
+.coupon-opening {
+    min-height: 5em;
+    margin: 0 1em 1em 0;
+}

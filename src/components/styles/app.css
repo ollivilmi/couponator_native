@@ -1,0 +1,29 @@
+html, #root {
+    background-image: url("/images/bgBlue.jpg");
+    font-family: 'Notable', sans-serif;
+}
+
+p {
+    font-family: 'Notable', sans-serif;
+    font-family: 'Oswald', sans-serif;
+}
+
+.container {
+    width: 90%;
+    color: black;
+    border-radius: 3em;
+}
+
+h4 {
+    margin: 0 auto;
+    padding: 2px;
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.coupon {
+    min-height: 5em;
+    margin: 0 1em 1em 0;
+}

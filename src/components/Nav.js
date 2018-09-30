@@ -3,22 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleView } from '../actions/viewActions';
 import { BOX_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW } from '../actions/types';
-import { List, ListItem, Button } from 'react-native-elements'
+import { View } from 'react-native'
+import { Button } from 'react-native-elements'
 
 class Nav extends Component {
   render() {
     return (
-      <List>
+      <View style={{flexDirection: 'row', marginTop: 25, justifyContent: 'center'}}>
         { 
           this.props.views.map((view, index) => {
             return (
-            <ListItem key={index}>
-              <Button title={view} onPress={() => this.props.toggleView(view)}></Button>
-            </ListItem>
+              <Button key={index} title={view} onPress={() => this.props.toggleView(view)}></Button>
             );
-          }) 
+          })
         }
-      </List>
+      </View>
     )
   }
 }

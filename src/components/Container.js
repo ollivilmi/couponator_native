@@ -33,7 +33,9 @@ class Container extends Component {
         return (
             <View>
                 { this.props.navActive ? <Nav/> : null }
-                { this.getView() }
+                <View style={{marginTop: 25}}>
+                    { this.getView() }
+                </View>
             </View>
         )
     }

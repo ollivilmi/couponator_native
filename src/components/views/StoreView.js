@@ -13,9 +13,8 @@ class StoreView extends Component {
         return (
             <View>
                 {
-                    // Add more props to Stores -> description etc.
                     this.props.navActive ? 
-                    <StoreMenu clickHandler={this.props.fetchCouponsForStore}/> : 
+                    <StoreMenu title="Available stores" verbose={true} clickHandler={this.props.fetchCouponsForStore}/> : 
                     <CouponMenu coupons={this.props.coupons} return={this.props.toggleNav}/>
                 }
             </View>

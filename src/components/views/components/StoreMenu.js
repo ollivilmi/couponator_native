@@ -5,7 +5,7 @@ import { fetchStores } from '../../../actions/storeActions';
 import { Button } from 'react-native-elements'
 import { View, Text } from 'react-native';
 
-export const Store = props => {
+const Store = props => {
     return (
         <View>
             <Button onPress={props.toggleView} title={props.name}/>
@@ -20,17 +20,23 @@ class StoreMenu extends Component {
     }
 
     render() {
-        return this.props.stores.map((store, index) => {
-            return (
-                <Store
-                    key={index}
-                    toggleView={() => this.props.clickHandler(store)} 
-                    name={store.name} 
-                    description={store.description} 
-                    details={store.details} 
-                />
-            )
-        })
+        return (
+        <View>
+            <Text>{this.props.title}</Text>
+            { 
+                this.props.stores.map((store, index) => {
+                return (
+                    <Store
+                        key={index}
+                        toggleView={() => this.props.clickHandler(store)} 
+                        name={store.name} 
+                        description={this.props.verbose ? store.description : ""} 
+                    />
+                    )
+                })
+            }
+        </View>
+        )
     }
 }
 

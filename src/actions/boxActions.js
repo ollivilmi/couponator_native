@@ -1,7 +1,9 @@
 import { FETCH_BOXES, OPEN_BOX, CLOSE_BOX, TOGGLE_NAV, OPENING_VIEW, BOX_VIEW, TOGGLE_VIEW } from './types';
 
+const user = '5bad33c2ee11ed0004f21472';
+
 export const fetchBoxes = () => dispatch => {
-  fetch('https://couponator-api.herokuapp.com/users/5bad33c2ee11ed0004f21472/lootboxes')
+  fetch(`https://couponator-api.herokuapp.com/users/${user}/lootboxes`)
     .then(res => res.json())
     .then(boxes => {
       dispatch({
@@ -13,7 +15,7 @@ export const fetchBoxes = () => dispatch => {
 };
 
 export const openBox = box => dispatch => {
-    fetch('https://couponator-api.herokuapp.com/users/5bad33c2ee11ed0004f21472/lootboxes')
+    fetch(`https://couponator-api.herokuapp.com/users/${user}/lootboxes`)
     .then(res => res.json())
     .then(coupons => {
       dispatch({

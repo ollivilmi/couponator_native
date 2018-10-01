@@ -2,28 +2,38 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { BOX_VIEW, STORE_VIEW, COUPON_VIEW, USER_VIEW, OPENING_VIEW } from '../actions/types';
+import { BOX_VIEW, STORE_VIEW, COUPON_VIEW, USER_VIEW, OPENING_VIEW, PURCHASE_VIEW } from '../actions/types';
 import Nav from "./Nav";
 import BoxView from "./views/BoxView";
 import StoreView from "./views/StoreView";
 import OpeningView from "./views/OpeningView";
 import CouponView from "./views/CouponView";
 import { UserView } from "./views/UserView";
+import { PurchaseView } from "./views/PurchaseView";
 import { View } from 'react-native';
 
+// Acts as a navigation/rendering system that works with both React Native and React JS
 class Container extends Component {
     getView() {
         switch (this.props.view) {
             case BOX_VIEW:
                 return <BoxView />
+
+            case PURCHASE_VIEW:
+                return <PurchaseView />
+
             case STORE_VIEW:
                 return <StoreView />
+
             case COUPON_VIEW:
                 return <CouponView />
+
             case USER_VIEW:
                 return <UserView />
+
             case OPENING_VIEW:
                 return <OpeningView />
+
             default:
                 return <p>Internal error</p>
         }

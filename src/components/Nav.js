@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleView } from '../actions/viewActions';
-import { BOX_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW } from '../actions/types';
-import { View } from 'react-native'
-import { Button } from 'react-native-elements'
+import { BOX_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW, PURCHASE_VIEW } from '../actions/types';
+import { View, TouchableOpacity, Text } from 'react-native'
 
 class Nav extends Component {
   render() {
     return (
-      <View style={{flexDirection: 'row', marginTop: 25, justifyContent: 'center'}}>
+      <View style={{flexDirection: 'row', marginTop: 25, justifyContent: 'space-between'}}>
         { 
           this.props.views.map((view, index) => {
             return (
-              <Button key={index} title={view} onPress={() => this.props.toggleView(view)}></Button>
+              <TouchableOpacity key={index}  onPress={() => this.props.toggleView(view)}>
+                <Text>{view}</Text>
+              </TouchableOpacity>
             );
           })
         }
@@ -31,7 +32,7 @@ Nav.propTypes = {
 const mapStateToProps = state => ({
   view: state.nav.view,
   views: [
-    BOX_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW
+    BOX_VIEW, PURCHASE_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW
   ]
 });
 

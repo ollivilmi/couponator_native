@@ -16,4 +16,5 @@ export const BOX_VIEW = "Boxes";
 export const STORE_VIEW = "Stores";
 export const COUPON_VIEW = "Coupons";
 export const USER_VIEW = "User";
+export const PURCHASE_VIEW = "Purchases";
 export const OPENING_VIEW = "Opening";

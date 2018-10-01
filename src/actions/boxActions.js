@@ -32,7 +32,6 @@ export const openBox = user => dispatch => {
 };
 
 export const closeBox = () => dispatch => {
-  console.log("Closing box and clearing coupons from state");
   dispatch({
       type: CLOSE_BOX
   })

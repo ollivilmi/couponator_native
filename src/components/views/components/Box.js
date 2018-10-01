@@ -10,8 +10,6 @@ class Box extends Component {
     render() {
         const amount = Math.floor(this.props.progress);
         const progress = this.props.progress - amount;
-        console.log(progress);
-        console.log(amount);
         return (
             <View style={{marginTop: 22}}>
                 <Progress.Bar progress={progress}/>
@@ -32,7 +30,7 @@ Box.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    user: state.userDetails.user
+    user: state.user.id
 });
 
 export default connect(mapStateToProps, { openBox })(Box);

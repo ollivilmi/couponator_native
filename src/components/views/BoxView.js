@@ -31,7 +31,7 @@ BoxView.propTypes = {
 
 const mapStateToProps = state => ({
     boxes: state.container.boxes,
-    user: state.userDetails.user
+    user: state.user.id
 });
 
 export default connect(mapStateToProps, { fetchBoxes })(BoxView);

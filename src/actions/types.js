@@ -12,9 +12,7 @@ export const OPEN_BOX = "OPEN_BOX";
 export const CLOSE_BOX = "CLOSE_BOX";
 
 // Actions for user information
-export const FETCH_USER_DATA = "FETCH_USER_DATA";
-export const LOGIN_AS_USER = "LOGIN_AS_USER";
-export const GET_ALL_USERS = "GET_ALL_USERS";
+export const CURRENT_USER = "CURRENT_USER";
 
 // Contants for views
 export const BOX_VIEW = "Boxes";

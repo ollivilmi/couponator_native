@@ -8,5 +8,5 @@ export default combineReducers({
   container: boxReducer,
   nav: viewReducer,
   storeView: storeReducer,
-  userDetails: userReducer
+  user: userReducer
 });

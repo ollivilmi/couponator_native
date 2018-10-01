@@ -8,7 +8,6 @@ export const fetchStores = () => dispatch => {
   fetch(`https://couponator-api.herokuapp.com/stores/near?${coords}`)
     .then(res => res.json())
     .then(stores => {
-        console.log(stores);
         dispatch({
             type: FETCH_STORES,
             payload: stores
@@ -22,7 +21,6 @@ export const fetchCouponsForStore = store => dispatch => {
     fetch(`https://couponator-api.herokuapp.com/stores/${store.id}/coupons`)
         .then(res => res.json())    
             .then(stores => {
-            console.log(stores);
             dispatch({
                 type: FETCH_COUPONS,
                 payload: stores

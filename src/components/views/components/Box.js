@@ -17,7 +17,7 @@ class Box extends Component {
                 <Progress.Bar progress={progress}/>
                 <Text>{this.props.title}</Text>
                 <View>
-                    <TouchableOpacity onPress={() => this.props.openBox(this.props)}> 
+                    <TouchableOpacity onPress={() => this.props.openBox(this.props.user)}> 
                         <Image source={require('./assets/gift.png')} style={{width: 40, height: 40}}/>
                     </TouchableOpacity>
                     <Text>{amount > 0 ? `[${amount}] available` : "None available"}</Text>
@@ -31,4 +31,8 @@ Box.propTypes = {
     openBox: PropTypes.func.isRequired,
 }
 
-export default connect(null, { openBox })(Box);
+const mapStateToProps = state => ({
+    user: state.userDetails.user
+});
+
+export default connect(mapStateToProps, { openBox })(Box);

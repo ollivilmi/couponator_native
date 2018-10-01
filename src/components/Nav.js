@@ -8,7 +8,7 @@ import { View, TouchableOpacity, Text } from 'react-native'
 class Nav extends Component {
   render() {
     return (
-      <View style={{flexDirection: 'row', marginTop: 25, justifyContent: 'space-between'}}>
+      <View style={{flexDirection: 'row', marginTop: 25, justifyContent: 'space-evenly'}}>
         { 
           this.props.views.map((view, index) => {
             return (
@@ -23,6 +23,7 @@ class Nav extends Component {
   }
 }
 
+
 Nav.propTypes = {
   toggleView: PropTypes.func.isRequired,
   view: PropTypes.string.isRequired,
@@ -32,7 +33,7 @@ Nav.propTypes = {
 const mapStateToProps = state => ({
   view: state.nav.view,
   views: [
-    BOX_VIEW, PURCHASE_VIEW, COUPON_VIEW, STORE_VIEW, USER_VIEW
+    BOX_VIEW, USER_VIEW, COUPON_VIEW, STORE_VIEW
   ]
 });
 

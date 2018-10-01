@@ -9,7 +9,6 @@ import StoreView from "./views/StoreView";
 import OpeningView from "./views/OpeningView";
 import CouponView from "./views/CouponView";
 import { UserView } from "./views/UserView";
-import { PurchaseView } from "./views/PurchaseView";
 import { View } from 'react-native';
 
 // Acts as a navigation/rendering system that works with both React Native and React JS
@@ -18,9 +17,6 @@ class Container extends Component {
         switch (this.props.view) {
             case BOX_VIEW:
                 return <BoxView />
-
-            case PURCHASE_VIEW:
-                return <PurchaseView />
 
             case STORE_VIEW:
                 return <StoreView />

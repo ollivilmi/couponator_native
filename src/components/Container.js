@@ -9,7 +9,7 @@ import StoreView from "./views/StoreView";
 import OpeningView from "./views/OpeningView";
 import CouponView from "./views/CouponView";
 import UserView from "./views/UserView";
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import { loginAsUser } from '../actions/userActions';
 
@@ -44,11 +44,11 @@ class Container extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{marginBottom: 100}}>
                 { this.props.navActive ? <Nav/> : null }
-                <View style={{marginTop: 25}}>
+                <ScrollView contentContainerStyle={{alignItems: "center"}}>
                     { this.getView() }
-                </View>
+                </ScrollView>
             </View>
         )
     }

@@ -5,20 +5,21 @@ import { openBox } from '../../../actions/boxActions';
 
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import * as Progress from 'react-native-progress';
+import { Styles } from "./assets/styles_box"
 
 class Box extends Component {
     render() {
         const amount = Math.floor(this.props.progress);
         const progress = this.props.progress - amount;
         return (
-            <View style={{marginTop: 22}}>
-                <Progress.Bar progress={progress}/>
-                <Text>{this.props.title}</Text>
+            <View style={Styles.box}>
+                <Text style={Styles.header}>{this.props.title}</Text>
+                <Progress.Bar progress={progress} width={null}/>
                 <View>
                     <TouchableOpacity onPress={() => this.props.openBox(this.props.user)}> 
-                        <Image source={require('./assets/gift.png')} style={{width: 40, height: 40}}/>
+                        <Image source={require('./assets/gift.png')}/>
                     </TouchableOpacity>
-                    <Text>{amount > 0 ? `[${amount}] available` : "None available"}</Text>
+                    <Text style={Styles.amountText}>{amount > 0 ? `${amount} available` : "None available"}</Text>
                 </View>
             </View>
         )

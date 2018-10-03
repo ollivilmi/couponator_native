@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchBoxes } from '../../actions/boxActions';
 import Box from "./components/Box";
-import { View } from 'react-native';
-
+import { ScrollView } from 'react-native';
 
 class BoxView extends Component {
     componentWillMount() {
@@ -13,13 +12,13 @@ class BoxView extends Component {
 
     render() {
         return  (
-            <View>
+            <ScrollView style={{borderColor: '#000', borderWidth: 1, padding: 15}}>
                 {
                     this.props.boxes.map((box, index) => (
                         <Box key={index} title={box.store} progress={box.progress}/>
                     ))
                 }
-            </View>
+            </ScrollView>
         )
     }
 }

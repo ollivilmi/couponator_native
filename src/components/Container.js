@@ -8,11 +8,19 @@ import BoxView from "./views/BoxView";
 import StoreView from "./views/StoreView";
 import OpeningView from "./views/OpeningView";
 import CouponView from "./views/CouponView";
-import { UserView } from "./views/UserView";
+import UserView from "./views/UserView";
 import { View } from 'react-native';
 import Header from './views/components/Header';
 
+import { loginAsUser } from '../actions/userActions';
+
+// Acts as a navigation/rendering system that works with both React Native and React JS
+
 class Container extends Component {
+    componentWillMount() {
+        this.props.loginAsUser(this.props.user);
+    }
+
     getView() {
         switch (this.props.view) {
             case BOX_VIEW:
@@ -44,14 +52,16 @@ class Container extends Component {
 }
 
 Container.propTypes = {
+    loginAsUser: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     navActive: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
     view: state.nav.view,
-    navActive: state.nav.navActive
+    navActive: state.nav.navActive,
+    user: state.user.id
 });
 
 
-export default connect(mapStateToProps)(Container);
+export default connect(mapStateToProps, { loginAsUser })(Container);

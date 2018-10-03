@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openBox } from '../../../actions/boxActions';
-import { Text, ProgressBarAndroid, Image, StyleSheet, View } from 'react-native';
+import { Text, Image, StyleSheet, View } from 'react-native';
 import Card from './Card'
 import CardSection from './CardSection';
 import Button from './Button';
+import * as Progress from 'react-native-progress';
+
 class Box extends Component {
     render() {
+
         const {           
             thumbnailContainerStyle,
             imageStyle
         } = styles;
+
         const amount = parseInt(this.props.progress);
         const progress = this.props - progress - amount;
+
         return (
             <Card>
                 <Text>{this.props.title}</Text>
-                <ProgressBarAndroid styleAttr="Horizontal" progress={progress} />
+                <Progress.Bar progress={progress}/>
                 <CardSection>
                     <Image source={require('./assets/gift.png')} style={imageStyle} />
                 </CardSection>

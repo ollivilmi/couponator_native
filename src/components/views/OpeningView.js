@@ -16,7 +16,6 @@ class Coupon extends Component {
         this.state = { visible: false }
     }
 
-
     componentWillUpdate() {
         LayoutAnimation.spring();
     }
@@ -29,7 +28,8 @@ class Coupon extends Component {
         let description = null;
         if (this.state.visible) {
 
-            description = <CardSection>
+            const description = 
+            <CardSection>
                 <Text style={{ flex: 1, fontSize: 30 }}>
                     {this.props.store}
                 </Text>

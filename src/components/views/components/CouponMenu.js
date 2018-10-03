@@ -2,9 +2,6 @@ import React from 'react';
 import { Button } from 'react-native-elements'
 import { View, Text } from 'react-native';
 
-
-
-
 const Coupon = props => {
     return(
         <View>

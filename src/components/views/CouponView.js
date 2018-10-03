@@ -8,9 +8,6 @@ import { toggleNav } from '../../actions/viewActions';
 import { CouponMenu } from "./components/CouponMenu";
 import { View } from 'react-native';
 
-
-// Basically the same as StoreView as of now - could use the same component with different props.
-// Separate files as it may not be the case in the future / follows the convention used so far
 class CouponView extends Component {
     render() {
         return (

@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native';
 
 class BoxView extends Component {
     componentWillMount() {
-        this.props.fetchBoxes();
+        this.props.fetchBoxes(this.props.user);
     }
     renderAlbums() {
         return  this.props.boxes.map((box, index) => (
@@ -32,7 +32,8 @@ BoxView.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    boxes: state.container.boxes
+    boxes: state.container.boxes,
+    user: state.user.id
 });
 
 export default connect(mapStateToProps, { fetchBoxes })(BoxView);

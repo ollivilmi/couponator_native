@@ -11,10 +11,6 @@ export const TOGGLE_NAV = "TOGGLE_NAV";
 export const OPEN_BOX = "OPEN_BOX";
 export const CLOSE_BOX = "CLOSE_BOX";
 
-// Actions for user information
-export const CURRENT_USER = "CURRENT_USER";
-export const FETCH_PURCHASES = "FETCH_PURCHASES";
-
 // Contants for views
 export const BOX_VIEW = "Boxes";
 export const STORE_VIEW = "Stores";

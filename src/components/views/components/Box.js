@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openBox } from '../../../actions/boxActions';
-
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import * as Progress from 'react-native-progress';
-
+import { Text, ProgressBarAndroid, Image, StyleSheet, View } from 'react-native';
+import Card from './Card'
+import CardSection from './CardSection';
+import Button from './Button';
 class Box extends Component {
     render() {
-        const amount = Math.floor(this.props.progress);
-        const progress = this.props.progress - amount;
+        const {           
+            thumbnailContainerStyle,
+            imageStyle
+        } = styles;
+        const amount = parseInt(this.props.progress);
+        const progress = this.props - progress - amount;
         return (
-            <View style={{marginTop: 22}}>
-                <Progress.Bar progress={progress}/>
+            <Card>
                 <Text>{this.props.title}</Text>
-                <View>
-                    <TouchableOpacity onPress={() => this.props.openBox(this.props.user)}> 
-                        <Image source={require('./assets/gift.png')} style={{width: 40, height: 40}}/>
-                    </TouchableOpacity>
-                    <Text>{amount > 0 ? `[${amount}] available` : "None available"}</Text>
-                </View>
-            </View>
+                <ProgressBarAndroid styleAttr="Horizontal" progress={progress} />
+                <CardSection>
+                    <Image source={require('./assets/gift.png')} style={imageStyle} />
+                </CardSection>
+                <CardSection>
+                    <View style={thumbnailContainerStyle}>
+                        <Text style={{fontWeight: '600'}}>{amount > 0 ? `[${amount}] available` : "None available"}</Text>
+                    </View>                  
+                     <Button onPress={() => this.props.openBox(this.props.user)}>Got it!</Button>
+                </CardSection>
+            </Card>
         )
     }
 }
@@ -28,9 +35,31 @@ class Box extends Component {
 Box.propTypes = {
     openBox: PropTypes.func.isRequired,
 }
+const styles = StyleSheet.create({
+    headerContentStyle: {
+        flexDirection: 'column',
+        justifyContent: 'space-around'
+    },
+    headerTextStyle: {
+        fontSize: 18
+    },
+    thumbnailStyle: {
+        height: 50,
+        width: 50
+    },
+    thumbnailContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    imageStyle: {
+        height: 300,
+        flex: 1,
+        width: null
+    }
+})
 
-const mapStateToProps = state => ({
-    user: state.user.id
-});
 
-export default connect(mapStateToProps, { openBox })(Box);
+
+export default connect(null, { openBox })(Box);

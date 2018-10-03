@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchBoxes } from '../../actions/boxActions';
 import Box from "./components/Box";
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 
 class BoxView extends Component {
     componentWillMount() {
-        this.props.fetchBoxes(this.props.user);
+        this.props.fetchBoxes();
     }
+    renderAlbums() {
+        return  this.props.boxes.map((box, index) => (
+            <Box key={index} title={box.store} progress={box.progress}/>
+        ))
+        
+      }
 
     render() {
         return  (
-            <View>
-                {
-                    this.props.boxes.map((box, index) => (
-                        <Box key={index} title={box.store} progress={box.progress}/>
-                    ))
-                }
-            </View>
+            <ScrollView style={{marginTop:18}}>
+                    {this.renderAlbums()}
+            </ScrollView>
         )
     }
 }
@@ -30,8 +32,7 @@ BoxView.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    boxes: state.container.boxes,
-    user: state.user.id
+    boxes: state.container.boxes
 });
 
 export default connect(mapStateToProps, { fetchBoxes })(BoxView);

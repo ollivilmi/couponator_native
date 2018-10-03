@@ -2,45 +2,85 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { closeBox } from '../../actions/boxActions';
-import { View, Text, Modal } from 'react-native';
-import { Button } from 'react-native-elements'
-
+import {
+    Text,
+    TouchableWithoutFeedback,
+    View,
+    LayoutAnimation, ScrollView, StyleSheet
+} from 'react-native';
+import Button from './components/Button';
+import CardSection from './components/CardSection';
 class Coupon extends Component {
     constructor(props) {
         super(props);
         this.state = { visible: false }
-        this.show = this.show.bind(this);
     }
 
-    show() {
-        this.setState((prevState, props) => {
-            return {visible: true};
-        });
+
+    componentWillUpdate() {
+        LayoutAnimation.spring();
+    }
+
+    renderDescription = () => {
+        this.setState({ visible: true })
     }
 
     render() {
+        let description = null;
+        if (this.state.visible) {
+
+            description = <CardSection>
+                <Text style={{ flex: 1, fontSize: 30 }}>
+                    {this.props.store}
+                </Text>
+            </CardSection>
+        }
+        const { titleStyle } = styles;
         return (
-            <View>
-                {
-                    this.state.visible ? <View><Text>{this.props.store}</Text><Text>{this.props.title}</Text></View> :
-                    <Button onPress={this.show} title="Open"/>
-                }
+            <View style={{ flex: 1 }}>
+
+                <TouchableWithoutFeedback
+                    onPress={this.renderDescription}>
+                    <View>
+                        <CardSection>
+                            <Text style={titleStyle}>
+                                Press to Show
+{/*                                 {this.props.title}
+ */}                            </Text>
+                        </CardSection>
+                        {description}
+                    </View>
+
+                </TouchableWithoutFeedback>
             </View>
         )
     }
 }
 
+const styles = StyleSheet.create({
+    titleStyle: {
+        fontSize: 18,
+        paddingLeft: 15
+    },
+    descriptionStyle: {
+        paddingLeft: 10,
+        paddingRight: 10
+    },
+
+})
+
 class OpeningView extends Component {
     render() {
-        console.log(this.props.coupons);
         return (
-            <View style={{marginTop: 22}}>
-                {
-                this.props.coupons.map((coupon, index) => {
-                    return <Coupon key={index} store={coupon.store} title={coupon.title} />
-                })
-                }
-                <Button onPress={() => this.props.closeBox()} title="Close"></Button>
+            <View>
+                <ScrollView >
+                    {
+                        this.props.coupons.map((coupon, index) => {
+                            return <Coupon key={index} store={coupon.store} title={coupon.title} />
+                        })
+                    }
+                    <Button onPress={() => this.props.closeBox()}>Back</Button>
+                </ScrollView>
             </View>
         )
     }
@@ -50,9 +90,9 @@ OpeningView.propTypes = {
     closeBox: PropTypes.func.isRequired,
     coupons: PropTypes.array.isRequired
 }
-  
+
 const mapStateToProps = state => ({
-    coupons: state.container.coupons
+    coupons: state.container.coupons,
 });
 
 export default connect(mapStateToProps, { closeBox })(OpeningView);

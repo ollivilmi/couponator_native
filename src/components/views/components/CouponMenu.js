@@ -2,6 +2,9 @@ import React from 'react';
 import { Button } from 'react-native-elements'
 import { View, Text } from 'react-native';
 
+
+
+
 const Coupon = props => {
     return(
         <View>
@@ -14,7 +17,7 @@ const Coupon = props => {
 export const CouponMenu = props => {
     return (
         <View>
-            <Button title="Return" onPress={() => props.return()}/>
+            <Button onPress={() => props.return()}/>
             {
                 props.coupons.map((coupon, index) => {
                     return (
@@ -29,3 +32,4 @@ export const CouponMenu = props => {
         </View>
     )
 }
+

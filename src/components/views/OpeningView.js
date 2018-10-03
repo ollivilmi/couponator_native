@@ -32,7 +32,6 @@ class Coupon extends Component {
 
 class OpeningView extends Component {
     render() {
-        console.log(this.props.coupons);
         return (
             <View style={{marginTop: 22}}>
                 {

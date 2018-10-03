@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 export const Styles = StyleSheet.create({
     nav: {
         flexDirection: 'row', 
-        marginTop: 50,
+        marginTop: 24,
         marginBottom: 10,
         justifyContent: 'space-evenly',
-        backgroundColor: "#000"
+        backgroundColor: "#5acbec"
     },
     navFont: {
         color: "#fff",
@@ -15,10 +15,10 @@ export const Styles = StyleSheet.create({
         padding: 10,
     },
     navFontActive: {
-        color: "#000",
+        color: "#ccf4ff",
         fontSize: 18,
         fontWeight: "bold",
         padding: 10,
-        backgroundColor: "#fff",
+        backgroundColor: "#61bdd8",
     }
 })

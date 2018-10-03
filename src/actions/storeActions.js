@@ -17,13 +17,13 @@ export const fetchStores = () => dispatch => {
 };
 
 export const fetchCouponsForStore = store => dispatch => {
-    console.log(store);
-    fetch(`https://couponator-api.herokuapp.com/stores/${store.id}/coupons`)
+    fetch(`https://couponator-api.herokuapp.com/stores/${store._id}/coupons`)
         .then(res => res.json())    
-            .then(stores => {
+            .then(coupons => {
+            console.log(coupons);
             dispatch({
                 type: FETCH_COUPONS,
-                payload: stores
+                payload: coupons
             }),
             dispatch({
                 type: TOGGLE_NAV
@@ -33,15 +33,13 @@ export const fetchCouponsForStore = store => dispatch => {
 };
 
 export const fetchCouponsForUser = user => dispatch => {
+    console.log(user);
     fetch(`https://couponator-api.herokuapp.com/users/${user}/coupons`)
         .then(res => res.json())    
         .then(stores =>
         dispatch({
             type: FETCH_COUPONS,
             payload: stores
-        }),
-        dispatch({
-            type: TOGGLE_NAV
         })
     );
 }

@@ -1,21 +1,24 @@
 import React from 'react';
-import { Button } from 'react-native-elements'
-import { View, Text } from 'react-native';
+import { View, Text, TouchableHighlight, Image } from 'react-native';
+
+import { Styles } from "./assets/styles_coupon"
 
 const Coupon = props => {
     return(
-        <View>
-            <Text>{props.title}</Text>
-            <Text>Valid until {props.date}</Text>
+        <View style={Styles.coupon}>
+            <Text style={Styles.couponHeader}>{props.title}</Text>
+            <TouchableHighlight>
+                <Image source={require('./assets/qr.png')} style={{width: 125, height: 160}}/>
+            </TouchableHighlight>
         </View>
     ) 
 }
 
 export const CouponMenu = props => {
     return (
-        <View>
-            <Button title="Return" onPress={() => props.return()}/>
+        <View style={Styles.container}>
             {
+                props.coupons !== null ?
                 props.coupons.map((coupon, index) => {
                     return (
                         <Coupon
@@ -25,6 +28,8 @@ export const CouponMenu = props => {
                         />
                     )
                 })
+                :
+                <Text>Server error: unable to fetch coupons</Text>
             }
         </View>
     )

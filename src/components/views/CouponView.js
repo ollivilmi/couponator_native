@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import StoreMenu from "./components/StoreMenu";
 import { fetchCouponsForUser } from '../../actions/storeActions';
 import { toggleNav } from '../../actions/viewActions';
-import { CouponMenu } from "./components/CouponMenu";
 import { View } from 'react-native';
+import { CouponMenu } from "./components/CouponMenu";
+
 
 class CouponView extends Component {
+    componentWillMount() {
+        this.props.fetchCouponsForUser(this.props.user);
+    }
+
     render() {
         return (
             <View>
-                {
-                    this.props.navActive ? 
-                    <StoreMenu title="Your coupons" verbose={false} clickHandler={this.props.fetchCouponsForUser}/> : 
-                    <CouponMenu coupons={this.props.coupons} return={this.props.toggleNav}/>
-                }
+                <CouponMenu coupons={this.props.coupons}/>
             </View>
         )
     }
@@ -24,12 +24,11 @@ class CouponView extends Component {
 
 CouponView.propTypes = {
     fetchCouponsForUser: PropTypes.func.isRequired,
-    toggleNav: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     coupons: state.storeView.coupons,
-    navActive: state.nav.navActive
+    user: state.user.id
 });
 
 export default connect(mapStateToProps, { fetchCouponsForUser, toggleNav })(CouponView);

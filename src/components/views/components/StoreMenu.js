@@ -23,17 +23,19 @@ class StoreMenu extends Component {
         return (
         <View>
             <Text>{this.props.title}</Text>
-            { 
+            {
+                this.props.stores !== null ?
                 this.props.stores.map((store, index) => {
                 return (
                     <Store
                         key={index}
                         toggleView={() => this.props.clickHandler(store)} 
                         name={store.name} 
-                        description={this.props.verbose ? store.description : ""} 
                     />
                     )
                 })
+                :
+                <Text>Server error: unable to fetch stores</Text>
             }
         </View>
         )

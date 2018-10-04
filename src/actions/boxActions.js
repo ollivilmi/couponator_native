@@ -1,4 +1,4 @@
-import { FETCH_BOXES, OPEN_BOX, CLOSE_BOX, TOGGLE_NAV, OPENING_VIEW, BOX_VIEW, TOGGLE_VIEW } from './types';
+import { FETCH_BOXES, OPEN_BOX, CLOSE_BOX, TOGGLE_NAV, OPENING_VIEW, BOX_VIEW, TOGGLE_VIEW, OPEN_COUPON } from './types';
 
 export const fetchBoxes = user => dispatch => {
   fetch(`https://couponator-api.herokuapp.com/users/${user}/lootboxes`)
@@ -29,6 +29,12 @@ export const openBox = user => dispatch => {
       })
     }
   );
+};
+
+export const openCoupon = () => dispatch => {
+  dispatch({
+    type: OPEN_COUPON
+  })
 };
 
 export const closeBox = () => dispatch => {

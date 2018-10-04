@@ -10,6 +10,7 @@ export const TOGGLE_NAV = "TOGGLE_NAV";
 // Actions for opening sequence
 export const OPEN_BOX = "OPEN_BOX";
 export const CLOSE_BOX = "CLOSE_BOX";
+export const OPEN_COUPON = "OPEN_COUPON";
 
 // Actions for user information
 export const CURRENT_USER = "CURRENT_USER";

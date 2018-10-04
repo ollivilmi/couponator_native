@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { closeBox } from '../../actions/boxActions';
-import { View, Text, Modal } from 'react-native';
-import { Button } from 'react-native-elements'
+import { closeBox, openCoupon } from '../../actions/boxActions';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import CardFlip from "react-native-card-flip";
+import { Coupon } from "./components/Coupon";
+import { Styles } from "./components/assets/styles_store.js";
 
-class Coupon extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { visible: false }
-        this.show = this.show.bind(this);
-    }
-
-    show() {
-        this.setState((prevState, props) => {
-            return {visible: true};
-        });
-    }
-
+class CouponReveal extends Component {
     render() {
+        let count = 1;
         return (
             <View>
-                {
-                    this.state.visible ? <View><Text>{this.props.store}</Text><Text>{this.props.title}</Text></View> :
-                    <Button onPress={this.show} title="Open"/>
-                }
+                <CardFlip style={{height: 300, width: 220 }} ref={(card) => this.card = card} >
+                    <TouchableOpacity onPress=
+                        {() => { 
+                            count-- > 0 ? this.card.jiggle({count: 1, duration: 100, progress: 0.05}) :
+                            this.card.flip()}
+                        } >
+                        <Image source={require('./components/assets/gift.png')}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { this.card.flip(); this.props.next()}} >
+                        <Coupon title={this.props.store} description={this.props.title}/>
+                    </TouchableOpacity>
+                </CardFlip>
             </View>
         )
     }
@@ -33,13 +32,15 @@ class Coupon extends Component {
 class OpeningView extends Component {
     render() {
         return (
-            <View style={{marginTop: 22}}>
+            <View style={{marginTop: 30}}>
                 {
-                this.props.coupons.map((coupon, index) => {
-                    return <Coupon key={index} store={coupon.store} title={coupon.title} />
-                })
+                    this.props.coupons.length > 0 ?
+                    <CouponReveal store={this.props.coupons[0].store} title={this.props.coupons[0].title} next={this.props.openCoupon} />
+                    : <Text style={Styles.mainHeader}>Empty!</Text>
                 }
-                <Button onPress={() => this.props.closeBox()} title="Close"></Button>
+                <TouchableOpacity onPress={() => this.props.closeBox()}>
+                    <Text style={Styles.exitButton}>Exit</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -47,11 +48,12 @@ class OpeningView extends Component {
 
 OpeningView.propTypes = {
     closeBox: PropTypes.func.isRequired,
+    openCoupon: PropTypes.func.isRequired,
     coupons: PropTypes.array.isRequired
 }
   
 const mapStateToProps = state => ({
-    coupons: state.container.coupons
+    coupons: state.container.coupons,
 });
 
-export default connect(mapStateToProps, { closeBox })(OpeningView);
+export default connect(mapStateToProps, { closeBox, openCoupon })(OpeningView);

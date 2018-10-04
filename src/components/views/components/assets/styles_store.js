@@ -15,5 +15,8 @@ export const Styles = StyleSheet.create({
     },
     content: {
         flex: 1, flexDirection: "row", justifyContent: "space-between"
+    },
+    exitButton: {
+        backgroundColor: "#4286f4", color: "#fff", padding: 20, fontSize: 22, textAlign: "center", marginTop: 50
     }
 })

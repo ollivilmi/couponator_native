@@ -1,4 +1,4 @@
-import { FETCH_BOXES, OPEN_BOX, CLOSE_BOX } from '../actions/types';
+import { FETCH_BOXES, OPEN_BOX, CLOSE_BOX, OPEN_COUPON } from '../actions/types';
 
 const initialState = {
   boxes: [],
@@ -23,6 +23,12 @@ export default function(state = initialState, action) {
     return {
       ...state,
       coupons: []
+    }
+
+    case OPEN_COUPON:
+    return {
+      ...state,
+      coupons: state.coupons.slice(1)
     }
 
     default:

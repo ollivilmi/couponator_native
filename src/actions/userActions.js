@@ -23,3 +23,18 @@ export const fetchPurchases = userId => dispatch => {
         }
     );
 };
+
+export const addPurchase = (amount, userId, storeId) => dispatch => {
+    fetch("https://couponator-api.herokuapp.com/purchases", {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({price: amount, user: userId, store: storeId}) 
+    })
+        .then(res => res.json())
+        .then(response => {
+            console.log(response);
+        });
+};

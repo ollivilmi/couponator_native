@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-import { fetchPurchases } from '../../actions/userActions';
+import { fetchPurchases, addPurchase } from '../../actions/userActions';
 
 class UserView extends Component {
     componentWillMount() {
@@ -13,14 +13,14 @@ class UserView extends Component {
     render() {
         return  (
             <View>
-                <Text>This view is used for testing. Todo: add purchase with QR and list recent purchases</Text>
-
+                <Button onPress={() => this.props.addPurchase(100, this.props.user._id, "5bad3754b4c4e700040eafd4")} title="create purchase for testing"/>
+                <Text>This view is used for testing.</Text>
                 <Text>User: {this.props.user.firstName} {this.props.user.lastName}</Text>
                 <Text>Email: {this.props.user.email}</Text>
                 <Text>User id: {this.props.user._id}</Text>
-                <Text>Purchases: </Text>
+                <Text>Last Purchases: </Text>
                 {
-                    this.props.purchases.map((purchase, index) => {
+                    this.props.purchases.slice(0, 5).map((purchase, index) => {
                         return <Text key={index}>{purchase.price}€ {purchase.date}</Text>
                     })
                 }
@@ -31,6 +31,7 @@ class UserView extends Component {
 
 UserView.propTypes = {
     fetchPurchases: PropTypes.func.isRequired,
+    addPurchase: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     purchases: PropTypes.array.isRequired
 }
@@ -40,4 +41,4 @@ const mapStateToProps = state => ({
     purchases: state.user.purchases
 });
 
-export default connect(mapStateToProps, { fetchPurchases })(UserView);
+export default connect(mapStateToProps, { fetchPurchases, addPurchase })(UserView);

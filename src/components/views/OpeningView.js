@@ -21,7 +21,7 @@ class CouponReveal extends Component {
                         <Image source={require('./components/assets/gift.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { this.card.flip(); this.props.next()}} >
-                        <Coupon title={this.props.store} description={this.props.title}/>
+                        <Coupon title={this.props.name} description={this.props.description}/>
                     </TouchableOpacity>
                 </CardFlip>
             </View>
@@ -31,11 +31,12 @@ class CouponReveal extends Component {
 
 class OpeningView extends Component {
     render() {
+        console.log(this.props);
         return (
             <View style={{marginTop: 30}}>
                 {
                     this.props.coupons.length > 0 ?
-                    <CouponReveal store={this.props.coupons[0].store} title={this.props.coupons[0].title} next={this.props.openCoupon} />
+                    <CouponReveal name={this.props.coupons[0].store.name} description={this.props.coupons[0].title} next={this.props.openCoupon} />
                     : <Text style={Styles.mainHeader}>Empty!</Text>
                 }
                 <TouchableOpacity onPress={() => this.props.closeBox()}>

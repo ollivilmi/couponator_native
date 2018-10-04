@@ -12,13 +12,14 @@ export const fetchBoxes = user => dispatch => {
   );
 };
 
-export const openBox = (user, progress) => dispatch => {
+export const openBox = (lootboxId, progress) => dispatch => {
     if (progress < 1) {
       return;
     }
-    fetch(`https://couponator-api.herokuapp.com/users/${user}/lootboxes`)
+    fetch(`https://couponator-api.herokuapp.com/lootboxes/${lootboxId}/open`)
     .then(res => res.json())
     .then(coupons => {
+      console.log(coupons);
       dispatch({
         type: OPEN_BOX,
         payload: coupons

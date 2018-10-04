@@ -11,7 +11,7 @@ export class CouponMenu extends Component {
     return (
         <ScrollView contentContainerStyle={Styles.container}>
             {
-                this.props.coupons !== null ?
+                this.props.coupons.length > 0 ?
                 this.props.coupons.map((coupon, index) => {
                     return (
                         <Coupon
@@ -23,7 +23,7 @@ export class CouponMenu extends Component {
                     )
                 })
                 :
-                <Text>Server error: unable to fetch coupons</Text>
+                <Text>Sorry! No coupons found.</Text>
             }
         </ScrollView>
     )

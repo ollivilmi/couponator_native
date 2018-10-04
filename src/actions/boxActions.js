@@ -12,7 +12,10 @@ export const fetchBoxes = user => dispatch => {
   );
 };
 
-export const openBox = user => dispatch => {
+export const openBox = (user, progress) => dispatch => {
+    if (progress < 1) {
+      return;
+    }
     fetch(`https://couponator-api.herokuapp.com/users/${user}/lootboxes`)
     .then(res => res.json())
     .then(coupons => {

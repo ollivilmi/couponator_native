@@ -16,7 +16,7 @@ class Box extends Component {
                 <Text style={Styles.header}>{this.props.title}</Text>
                 <Progress.Bar progress={progress} width={null}/>
                 <View>
-                    <TouchableWithoutFeedback onPress={() => this.props.openBox(this.props.user)}> 
+                    <TouchableWithoutFeedback onPress={() => this.props.openBox(this.props.user, this.props.progress)}> 
                         <Image source={require('./assets/gift.png')}/>
                     </TouchableWithoutFeedback>
                     <Text style={Styles.amountText}>{amount > 0 ? `${amount} available` : "None available"}</Text>

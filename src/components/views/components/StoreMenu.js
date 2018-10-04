@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchStores } from '../../../actions/storeActions';
-import { Button } from 'react-native-elements'
-import { View, Text } from 'react-native';
+import { View, Text, TouchableHighlight, Image } from 'react-native';
+import { Styles } from "./assets/styles_store"
 
 const Store = props => {
     return (
-        <View>
-            <Button onPress={props.toggleView} title={props.name}/>
-            <Text>{props.description}</Text>
+        <View style={Styles.store}>
+            <TouchableHighlight onPress={props.toggleView}>
+                <Text style={Styles.storeHeader}>{props.name}</Text>
+            </TouchableHighlight>
+            <View style={Styles.content}>
+                <Text style={Styles.font}>{props.description}</Text>
+                <Image source={require('./assets/shop.png')}/>
+            </View>
         </View>
     )
 }
@@ -22,7 +27,7 @@ class StoreMenu extends Component {
     render() {
         return (
         <View>
-            <Text>{this.props.title}</Text>
+            <Text style={Styles.mainHeader}>{this.props.title}</Text>
             {
                 this.props.stores !== null ?
                 this.props.stores.map((store, index) => {
@@ -30,7 +35,8 @@ class StoreMenu extends Component {
                     <Store
                         key={index}
                         toggleView={() => this.props.clickHandler(store)} 
-                        name={store.name} 
+                        name={store.name}
+                        description={store.description}
                     />
                     )
                 })

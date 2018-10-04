@@ -1,36 +1,64 @@
-import React from 'react';
-import { View, Text, TouchableHighlight, Image } from 'react-native';
+import React, {Component} from 'react';
+import { Modal, ScrollView, View, Text, TouchableHighlight, Image } from 'react-native';
 
 import { Styles } from "./assets/styles_coupon"
 
-const Coupon = props => {
-    return(
-        <View style={Styles.coupon}>
-            <Text style={Styles.couponHeader}>{props.title}</Text>
-            <TouchableHighlight>
-                <Image source={require('./assets/qr.png')} style={{width: 125, height: 160}}/>
-            </TouchableHighlight>
-        </View>
-    ) 
+class Coupon extends Component {
+    render() {
+        return(
+            <View style={Styles.coupon}>
+                <Text style={Styles.couponHeader}>{this.props.title}</Text>
+                <TouchableHighlight onPress={() => this.props.onPress()}>
+                    <Image source={require('./assets/qr.png')} style={{width: 125, height: 160}}/>
+                </TouchableHighlight>
+            </View>
+        ) 
+    }
 }
 
-export const CouponMenu = props => {
+export class CouponMenu extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false,
+        };
+        this.setModalVisible = this.setModalVisible.bind(this);
+    }
+
+    setModalVisible() {
+        this.setState((prevState, props) => {
+            return {modalVisible: !prevState.modalVisible};
+        });
+    }
+
+    render() {
     return (
-        <View style={Styles.container}>
+        <ScrollView contentContainerStyle={Styles.container}>
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {this.state.setModalVisible}}>
+                <TouchableHighlight onPress={() => this.setModalVisible()}>
+                    <Image source={require('./assets/qr.png')} style={{marginTop: 50, width: "100%", height: 500}}/>
+                </TouchableHighlight>
+            </Modal>
             {
-                props.coupons !== null ?
-                props.coupons.map((coupon, index) => {
+                this.props.coupons !== null ?
+                this.props.coupons.map((coupon, index) => {
                     return (
                         <Coupon
                             key={index}
                             title={coupon.title}
                             date={coupon.date}
+                            onPress={this.setModalVisible}
                         />
                     )
                 })
                 :
                 <Text>Server error: unable to fetch coupons</Text>
             }
-        </View>
+        </ScrollView>
     )
+    }
 }

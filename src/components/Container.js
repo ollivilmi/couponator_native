@@ -9,7 +9,7 @@ import StoreView from "./views/StoreView";
 import OpeningView from "./views/OpeningView";
 import CouponView from "./views/CouponView";
 import UserView from "./views/UserView";
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, ImageBackground } from 'react-native';
 
 import { loginAsUser } from '../actions/userActions';
 
@@ -44,12 +44,14 @@ class Container extends Component {
 
     render() {
         return (
-            <View style={{marginBottom: 100}}>
-                { this.props.navActive ? <Nav/> : null }
-                <ScrollView contentContainerStyle={{alignItems: "center"}}>
-                    { this.getView() }
-                </ScrollView>
-            </View>
+            <ImageBackground source={require("./assets/bgwhite.jpg")} style={{width: '100%', height: '100%'}}>
+                <View style={{marginBottom: 100}}>
+                    { this.props.navActive ? <Nav/> : null }
+                    <ScrollView contentContainerStyle={{alignItems: "center"}}>
+                        { this.getView() }
+                    </ScrollView>
+                </View>
+            </ImageBackground>
         )
     }
 }

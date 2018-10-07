@@ -7,7 +7,7 @@ import { fetchPurchases, addPurchase } from '../../actions/userActions';
 
 class UserView extends Component {
     componentWillMount() {
-        this.props.fetchPurchases(this.props.user._id);
+        this.props.fetchPurchases(this.props.userId);
     }
 
     render() {
@@ -32,12 +32,12 @@ class UserView extends Component {
 UserView.propTypes = {
     fetchPurchases: PropTypes.func.isRequired,
     addPurchase: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
     purchases: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
     user: state.user.current,
+    userId: state.user.id,
     purchases: state.user.purchases
 });
 

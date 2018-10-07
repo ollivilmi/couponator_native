@@ -15,7 +15,7 @@ class BoxView extends Component {
             <ScrollView style={{borderColor: '#000', borderWidth: 1, padding: 15}}>
                 {
                     this.props.boxes.map((box, index) => (
-                        <Box key={index} id={box._id} title={box.store} progress={box.progress}/>
+                        <Box key={index} id={box._id} title={box.store.name} progress={box.progress}/>
                     ))
                 }
             </ScrollView>

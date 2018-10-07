@@ -6,7 +6,7 @@ import StoreMenu from "./components/StoreMenu";
 import { fetchCouponsForStore } from '../../actions/storeActions';
 import { toggleNav } from '../../actions/viewActions';
 import { CouponMenu } from "./components/CouponMenu";
-import { ScrollView, View, Button } from 'react-native';
+import { View, Button } from 'react-native';
 
 class StoreView extends Component {
     render() {
@@ -17,9 +17,7 @@ class StoreView extends Component {
                     <StoreMenu title="Nearby stores" clickHandler={this.props.fetchCouponsForStore}/> :
                     <View style={{marginTop: 30}}>
                         <Button style={{fontSize: 30}} title="Return" onPress={() => this.props.toggleNav()}/>
-                        <ScrollView style={{marginTop: 25}}>
-                            <CouponMenu coupons={this.props.coupons}/>
-                        </ScrollView> 
+                        <CouponMenu coupons={this.props.coupons}/>
                     </View>
                 }
             </View>

@@ -4,21 +4,17 @@ import { connect } from 'react-redux';
 
 import { fetchCouponsForUser } from '../../actions/storeActions';
 import { toggleNav } from '../../actions/viewActions';
-import { View } from 'react-native';
 import { CouponMenu } from "./components/CouponMenu";
 
-
+// This class is a WIP
+// todo: filtering coupons
 class CouponView extends Component {
     componentWillMount() {
         this.props.fetchCouponsForUser(this.props.user);
     }
 
     render() {
-        return (
-            <View>
-                <CouponMenu coupons={this.props.coupons}/>
-            </View>
-        )
+        return <CouponMenu coupons={this.props.coupons}/>
     }
 }
 

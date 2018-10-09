@@ -13,7 +13,7 @@ class UserView extends Component {
     render() {
         return  (
             <View>
-                <Button onPress={() => this.props.addPurchase(100, this.props.user._id, "5bad3754b4c4e700040eafd4")} title="create purchase for testing"/>
+                <Button onPress={() => this.props.addPurchase(12, this.props.user._id, "5bb5df54c9d6d62128fa4fbd")} title="create purchase for testing"/>
                 <Text>This view is used for testing.</Text>
                 <Text>User: {this.props.user.firstName} {this.props.user.lastName}</Text>
                 <Text>Email: {this.props.user.email}</Text>

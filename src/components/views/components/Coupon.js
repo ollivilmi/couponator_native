@@ -32,7 +32,7 @@ export class Coupon extends Component {
                 <Text style={Styles.couponHeader}>{this.props.title}</Text>
                 <Text style={Styles.font}>{this.props.description}</Text>
                 <TouchableWithoutFeedback onPress={() => this.setModalVisible()}>
-                    <Image source={require('./assets/qr.png')} style={{width: 125, height: 160}}/>
+                    <Image source={{uri: this.props.image}} style={{width: 125, height: 160}}/>
                 </TouchableWithoutFeedback>
             </View>
         ) 

@@ -19,7 +19,6 @@ export const openBox = (lootboxId, progress) => dispatch => {
     fetch(`https://couponator-api.herokuapp.com/lootboxes/${lootboxId}/open`)
     .then(res => res.json())
     .then(coupons => {
-      console.log(coupons);
       dispatch({
         type: OPEN_BOX,
         payload: coupons

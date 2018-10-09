@@ -6,14 +6,17 @@ import { View, Text, TouchableHighlight, Image } from 'react-native';
 import { Styles } from "./assets/styles_store"
 
 const Store = props => {
+    console.log(props.image);
     return (
         <View style={Styles.store}>
             <TouchableHighlight onPress={props.toggleView}>
-                <Text style={Styles.storeHeader}>{props.name}</Text>
+                <View style={Styles.storeHeader}>
+                    <Text style={Styles.storeHeaderFont}>{props.name}</Text>
+                    <Image style={Styles.storeImage} source={{uri: props.image}}/>
+                </View>
             </TouchableHighlight>
             <View style={Styles.content}>
                 <Text style={Styles.font}>{props.description}</Text>
-                <Image source={require('./assets/shop.png')}/>
             </View>
         </View>
     )
@@ -37,6 +40,7 @@ class StoreMenu extends Component {
                         toggleView={() => this.props.clickHandler(store)} 
                         name={store.name}
                         description={store.description}
+                        image={store.img}
                     />
                     )
                 })

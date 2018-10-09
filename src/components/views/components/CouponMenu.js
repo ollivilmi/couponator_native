@@ -6,7 +6,6 @@ import { Coupon } from "./Coupon";
 
 export class CouponMenu extends Component {
     render() {
-        console.log(this.props.coupons);
         return (
             <ScrollView contentContainerStyle={Styles.container}>
                 {
@@ -18,6 +17,7 @@ export class CouponMenu extends Component {
                                 title={coupon.title}
                                 date={coupon.date}
                                 onPress={this.setModalVisible}
+                                image={coupon.img}
                             />
                         )
                     })

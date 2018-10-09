@@ -1,7 +1,7 @@
 import { CURRENT_USER, FETCH_PURCHASES } from '../actions/types';
 
 const initialState = {
-    id: '5bad33c2ee11ed0004f21472',
+    id: '5bb5c5fbcb49873e508f0770',
     purchases: []
 };
 

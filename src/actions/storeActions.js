@@ -2,7 +2,7 @@ import { FETCH_STORES, FETCH_COUPONS, TOGGLE_NAV } from './types';
 
 // Could be taken from the phone. If no coords, just use default
 const coords = 'lng=24.80539&lat=60.2213';
-const user = '5bad33c2ee11ed0004f21472';
+const user = '5bb5c5fbcb49873e508f0770';
 
 export const fetchStores = () => dispatch => {
   fetch(`https://couponator-api.herokuapp.com/stores/near?${coords}`)
@@ -20,7 +20,6 @@ export const fetchCouponsForStore = store => dispatch => {
     fetch(`https://couponator-api.herokuapp.com/stores/${store._id}/coupons`)
         .then(res => res.json())    
             .then(coupons => {
-            console.log(coupons);
             dispatch({
                 type: FETCH_COUPONS,
                 payload: coupons
@@ -33,7 +32,6 @@ export const fetchCouponsForStore = store => dispatch => {
 };
 
 export const fetchCouponsForUser = user => dispatch => {
-    console.log(user);
     fetch(`https://couponator-api.herokuapp.com/users/${user}/coupons`)
         .then(res => res.json())    
         .then(stores =>
